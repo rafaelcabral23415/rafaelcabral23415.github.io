@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        const obtemValor = (seletor) => {
+    const val = document.querySelector(seletor)
+    let num = isNaN(parseFloat(val.value))? 0:parseFloat(val.value)
+    val.value = ""
+    return num
+}
+
+const escreveValor = (seletor, valor) => {
+    const nodeConteudo = document.createTextNode(valor)
+    document.querySelector(seletor).textContent = ""
+    document.querySelector(seletor).appendChild(nodeConteudo)
+}
+
+const botao1 = document.querySelector(".ex01")
+
+const fatorial = (num1) =>{
+    let soma = 0
+    if (num1 > 0){
+    soma = soma + num1*fatorial(num1 - 1) 
+    }
+    else soma = 1
+    return soma
+}
+
+botao1.addEventListener("click", () => {
+    const num1 = obtemValor("#quest1-v1")
+
+    escreveValor("#r01", fatorial(num1))
+})
+
+const botao2 = document.querySelector(".ex02")
+
+const pot04 = () => {
+    
+    let x = 1, pot, res = "As 30 primeiras potências de 4 são: "
+    while (x <= 30){
+    pot = Math.pow(4, x)
+    if (x == 30){
+    res = res + `${pot}.`
+    }
+    else res = res + `${pot}, `
+    ++x
+    }
+    return res     
+}
+
+botao2.addEventListener("click", () => {
+    escreveValor("#r02", pot04())
+})
+
+
+const botao3 = document.querySelector(".ex03")
+
+    const somaPares = () => {
+        let soma = 0, x
+        for(x = 2; x <= 1000; x = x + 2){
+        soma = soma + x
+        }
+        return soma
+    }
+
+botao3.addEventListener("click", () => {
+    escreveValor("#r03", somaPares())
+})
+
+const botao4 = document.querySelector(".ex04")
+
+    const fibo = () => {
+        let x = 1, y = 2, z = 1, seq = "Os números da sequência de Fibonacci são: "
+        while(z <= 100){
+        if (z == 100){
+        seq = seq + `${x}, ${y}.`    
+        } 
+        else seq = seq + `${x}, ${y}, `
+        x = x + y
+        y = y + x
+        ++z
+        }
+        return seq
+    }
+
+botao4.addEventListener("click", () => {
+    escreveValor("#r04", fibo())
+})
+
+
+const botao5 = document.querySelector(".ex05")
+
+const primos1000 = () => {
+    let x = 2, aux = 2, primo = 0, r = "Os números primos de 2 a 1000 são: "
+    
+    while (x <= 1000){
+        for(aux = 2; aux < x; ++aux){
+            if(x % aux == 0)
+            {
+                ++primo
+                aux = x
+            }
+        }
+            if (primo == 0){
+            r = r + `${x} ,`
+            }
+         ++x
+         primo = 0
+    }
+    return r
+}
+
+botao5.addEventListener("click", () => {
+    escreveValor("#r05", primos1000())
+})
+    </script>
+
+<h1 id="teste">Fundamentos da Web</h1>
+<hr>
+<h3>Atividade 1</h3>
+<p>Faça um programa que leia dois números e imprima a soma.</p>
+<input id="q1v1" placeholder="Número 1" />
+<input id="q1v2" placeholder="Número 2" />
+<button class="executa01">Somar</button>
+<p id="resp01"></p>
+
+<h3>Atividade 2</h3>
+<p>
+  Faça um programa que leia dois números e indique qual dos dois é o maior
+</p>
+<input id="q2v1" placeholder="Número 1" />
+<input id="q2v2" placeholder="Número 2" />
+<button class="executa02">Verificar</button>
+<p id="resp02"></p>
+
+<h3>Atividade 3</h3>
+<p>Faça um programa que verifique se o número é primo</p>
+<input id="q3v1" placeholder="Número" />
+<button class="executa03">Verificar</button>
+<p id="resp03"></p>
+
+<h3>Atividade 4</h3>
+<p>
+  Considerando os dois números passados representam a dimensão dos catetos
+  de um triângulo retângulo, faça um programa que calcule o tamanho da
+  hipotenusa.
+</p>
+<input id="q4v1" placeholder="Cateto 1" />
+<input id="q4v2" placeholder="Cateto 2" />
+<button class="executa04">Calcular</button>
+<p id="resp04"></p>
+
+<h3>Atividade 5</h3>
+<p>
+  Escreva um algoritmo para ler o salário mensal atual de um funcionário e o
+  percentual de reajuste. Calcular e escrever o valor do novo salário.
+</p>
+<input id="q5v1" placeholder="Salário" />
+<input id="q5v2" placeholder="Percentual" />%
+<button class="executa05">Calcular</button>
+<p id="resp05"></p>
+
+<h3>Atividade 6</h3>
+<p>
+  O custo de um carro novo ao consumidor é a soma do custo de fábrica com a
+  porcentagem do distribuidor e dos impostos (aplicados ao custo de
+  fábrica). Supondo que o percentual do distribuidor seja de 28% e os
+  impostos de 45%, escrever um algoritmo para ler o custo de fábrica de um
+  carro, calcular e escrever o custo final ao consumidor.
+</p>
+<input id="q6v1" placeholder="Custo de fábrica" />
+<button class="executa06">Calcular</button>
+<p id="resp06"></p>
+
+<h3>Atividade 7</h3>
+<p>
+  Uma revendedora de carros usados paga a seus funcionários vendedores um
+  salário fixo por mês, mais uma comissão também fixa para cada carro
+  vendido e mais 5% do valor das vendas por ele efetuadas. Escrever um
+  algoritmo que leia o número de carros por ele vendidos, o valor total de
+  suas vendas, o salário fixo e o valor que ele recebe por carro vendido.
+  Calcule e escreva o salário final do vendedor.
+</p>
+<input id="q7v1" placeholder="Carros vendidos" />
+<input id="q7v2" placeholder="Valor total de vendas" />
+<input id="q7v3" placeholder="Salário fixo" />
+<input id="q7v4" placeholder="Valor recebido por carro" />
+<button class="executa07">Calcular Salário</button>
+<p id="resp07"></p>
+
+<h3>Atividade 8</h3>
+<p>
+  Escreva um algoritmo para ler uma temperatura em graus Fahrenheit,
+  calcular e escrever o valor correspondente em graus Celsius.
+</p>
+<input id="q8v1" placeholder="Graus Fahrenheit" />
+<button class="executa08">Calcular graus Celsius</button>
+<p id="resp08"></p>
+
+<h3>Atividade 9</h3>
+<p>
+  Faça um algoritmo que leia três notas de um aluno, calcule e escreva a
+  média final deste aluno. Considerar que a média é ponderada e que o peso
+  das notas é 2, 3 e 5.
+</p>
+<input id="q9v1" placeholder="n1" />
+<input id="q9v2" placeholder="n2" />
+<input id="q9v3" placeholder="n3" />
+<button class="executa09">Calcular média</button>
+<p id="resp09"></p>
+
+<h3>Atividade 10</h3>
+<p>
+  As maçãs custam R$ 1,30 cada se forem compradas menos de uma dúzia, e R$
+  1,00 se forem compradas pelo menos 12. Escreva um programa que leia o
+  número de maçãs compradas, calcule e escreva o custo total da compra.
+</p>
+<input id="q10v1" placeholder="Quantidade maçãs" />
+<button class="executa10">Calcular valor</button>
+<p id="resp10"></p>
+
+<script src="/introducao-js/script01.js"></script>
+
+<style>
+body {
+max-width: 500px;
+margin: auto;
+border: 1px solid black;
+border-radius: 20px;
+padding: 0px 30px 30px 30px;
+}
+
+h1 {
+text-align: center;
+}
+
+p {
+text-align: justify;
+}
+</style>
+
+
+</body>
+</html>
